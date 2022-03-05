@@ -78,5 +78,96 @@
             $this->author = $row['author'];
             $this->category = $row['category'];
         }
+
+        // Create Quote
+        public function create() {
+            // Create query
+            $query = 'INSERT INTO ' . $this->table . '
+                SET
+                    qoute = :quote,
+                    authorId = :author_id,
+                    categoryId = :category_id';
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean Data
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $this->quote = htmlspecialchars(strip_tags($this->quote));
+            $this->author_id = htmlspecialchars(strip_tags($this->author_id));
+            $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+
+            // Execute query
+            if($stmt->execute()) {
+                return true;
+            }
+
+            // Print error if something went wrong
+            printf("Message: '%s'\n", $stmt->error);
+
+            return false;
+        }
+
+        // Update Quote
+        public function update() {
+            // Create query
+            $query = 'UPDATE ' . $this->table . '
+                SET
+                    quote = :quote,
+                    authorId = :author_id,
+                    categoryId = :category_id
+                WHERE
+                    id = :id';
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean data
+            $this->id = htmlspecialchars(strip_tags($this->id));
+            $this->quote = htmlspecialchars(strip_tags($this->quote));
+            $this->author_id = htmlspecialchars(strip_tags($this->author_id));
+            $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+
+            // Bind data
+            $stmt->bindParam(':id', $this->id);
+            $stmt->bindParam(':quote', $this->quote);
+            $stmt->bindParam(':author_id', $this->author_id);
+            $stmt->bindParam(':category_id', $this->category_id);
+
+            // Execute query
+            if($stmt->execute()) {
+                return true;
+            }
+
+            // print error if something goes wrong
+            printf("Message: '%s'\n", $stmt->error);
+
+            return false;
+        }
+
+        // Delete Quote
+        public function delete() {
+            // Create query
+            $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+            // prepare statement
+            $stmt = $this->conn->prepare($query);
+
+            // Clean data
+            $this->id = htmlspecialchars(strip_tags($this->id));
+
+            // Bind Param
+            $stmt->bindParam(':id', $this->id);
+
+            // Execute query
+            if($stmt->execute()) {
+                return true;
+            }
+
+            // print error if something goes wrong
+            printf("Message: '%s'\n", $stmt->error);
+
+            return false;            
+        }
     }
 ?>
