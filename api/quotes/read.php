@@ -10,10 +10,10 @@
     $db = $database->connect();
     
     // Instantiate quote object
-    $quote = new Quote($db);
+    $quotes = new Quote($db);
     
     // quote query
-    $result = $quote->read();
+    $result = $quotes->read();
     // Get row count
     $num = $result->rowCount();
     
@@ -27,7 +27,7 @@
     
             $quote_item = array( 
                 'id' => $id,
-                'quote' => html_entity_decode($result->quote),
+                'quote' => html_entity_decode($quote),
                 'author' => $author,
                 'category' => $category
             );
