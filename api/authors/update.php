@@ -7,6 +7,7 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Author.php';
+    include_once '../../api/functions/missingParams.php';
 
     // Instantiate DB & connect
     $database = new Database();
@@ -22,17 +23,20 @@
     $author->id = $data->id;
     $author->author = $data->author;
 
+    if(missingParams($author->id, $author->author)){
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+    }
+
     // Update author
-    if($author->update()) {
+    else {
+        $author->update();
         echo json_encode(
             array(
                 'id' => $author->id,
                 'author' => $author->author
             )
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Author Not Updated')
         );
     }
 ?>
