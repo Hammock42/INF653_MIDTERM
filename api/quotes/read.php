@@ -39,7 +39,7 @@
         }
 
         // Turn to JSON & output
-        print_r(json_encode($quote_arr));
+        echo json_encode($quote_arr);
     } else {
         echo json_encode(
             array('message' => 'No Quotes Found')
