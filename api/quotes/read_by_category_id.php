@@ -32,10 +32,10 @@
             extract($row);
 
             $quote_item = array( 
-                'quote' => html_entity_decode($quote),
-                'category' => $category,
                 'id' => $id,
-                'author' => $author
+                'quote' => html_entity_decode($quote),
+                'author' => $author,
+                'category' => $category
             );
             // push to array
             array_push($quote_arr, $quote_item);
