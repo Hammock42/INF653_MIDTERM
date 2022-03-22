@@ -13,12 +13,12 @@
     $db = $database->connect();
 
     // Instantiate blog post object
-    $author = new Author($db);
+    $authors = new Author($db);
 
     // Get raw posted data
     $data = json_decode(file_get_contents("php://input"));
 
-    $author->author = $data->author;
+    $authors->author = $data->author;
 
     // Create post
     if($author->create()) {
