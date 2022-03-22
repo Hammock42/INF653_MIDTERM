@@ -11,22 +11,22 @@
     $db = $database->connect();
 
     // Instantiate author object
-    $author = new Author($db);
+    $authors = new Author($db);
 
     // Get ID
-    $author->id = isset($_GET['id']) ? $_get['id'] : die();
+    $authors->id = isset($_GET['id']) ? $_get['id'] : die();
 
     // Get author
-    $author->read_single();
+    $authors->read_single();
 
     // Create array
     $author_arr = array(
-        'id' => $author->id,
-        'author' => $author->author
+        'id' => $authors->id,
+        'author' => $authors->author
     );
 
     // Make JSON
-    if($author->id !== null) {
+    if($authors->id !== null) {
         echo json_encode($author_arr);
     }
     else {

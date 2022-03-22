@@ -40,14 +40,14 @@
                 FROM
                     ' . $this->table . '
                 WHERE
-                    id = ?
+                    id = :id
                 LIMIT 0,1';
 
             // Prepare Statement
             $stmt = $this->conn->prepare($query);
 
             // Bind ID
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(':id', $this->id);
 
             // Execute Query
             $stmt->execute();
