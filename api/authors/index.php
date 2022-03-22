@@ -7,6 +7,25 @@
         header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With');
     }
 
-    include_once '../../config/Database.php';
-    include_once '../../models/Author.php';
+    $isAnId = filter_input(INPUT_GET, "id");
+
+    if (isset($isAnId) && $method == 'GET') {
+        include('./read_single.php');
+    }
+
+    else if ($method == 'GET') {
+        include('./read.php');
+    }
+
+    else if ($method == 'PUT') {
+        include('./update.php');
+    }
+
+    else if ($method == 'DELETE') {
+        include('./delete.php');
+    }
+
+    else if ($method == 'POST') {
+        include('./create.php');
+    }
 ?>

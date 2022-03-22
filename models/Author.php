@@ -72,6 +72,9 @@
             // Clean Data
             $this->author = htmlspecialchars(strip_tags($this->author));
 
+            // Bind data
+            $stmt->bindParam(':author', $this->author);
+
             // Execute query
             if($stmt->execute()) {
                 return true;

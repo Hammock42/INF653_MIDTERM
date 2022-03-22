@@ -22,9 +22,14 @@
     // Create array
     $author_arr = array(
         'id' => $author->id,
-        'author' => $author->author,
+        'author' => $author->author
     );
 
     // Make JSON
-    print_r(json_encode($author_arr));
+    if($author->id !== null) {
+        print_r(json_encode($author_arr));
+    }
+    else {
+        echo json_encode(array('message' => 'authorId Not Found'));
+    }
 ?>

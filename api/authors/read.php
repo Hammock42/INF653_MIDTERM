@@ -37,7 +37,7 @@
         }
 
         // Turn to JSON & output
-        echo json_encode($author_arr);
+        print_r(json_encode($author_arr));
     } else {
         // No authors
         echo json_encode(

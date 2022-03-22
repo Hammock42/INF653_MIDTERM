@@ -8,9 +8,9 @@
         public $id;
         public $quote;
         public $author;
-        public $author_id;
+        public $authorId;
         public $category;
-        public $category_id;
+        public $categoryId;
 
         // Constructor with DB
         public function __construct($db) {
@@ -85,8 +85,8 @@
             $query = 'INSERT INTO ' . $this->table . '
                 SET
                     qoute = :quote,
-                    authorId = :author_id,
-                    categoryId = :category_id';
+                    authorId = :authorId,
+                    categoryId = :categoryId';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
@@ -94,8 +94,8 @@
             // Clean Data
             $this->id = htmlspecialchars(strip_tags($this->id));
             $this->quote = htmlspecialchars(strip_tags($this->quote));
-            $this->author_id = htmlspecialchars(strip_tags($this->author_id));
-            $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+            $this->authorId = htmlspecialchars(strip_tags($this->authorId));
+            $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
 
             // Execute query
             if($stmt->execute()) {
@@ -114,8 +114,8 @@
             $query = 'UPDATE ' . $this->table . '
                 SET
                     quote = :quote,
-                    authorId = :author_id,
-                    categoryId = :category_id
+                    authorId = :authorId,
+                    categoryId = :categoryId
                 WHERE
                     id = :id';
 
@@ -125,14 +125,14 @@
             // Clean data
             $this->id = htmlspecialchars(strip_tags($this->id));
             $this->quote = htmlspecialchars(strip_tags($this->quote));
-            $this->author_id = htmlspecialchars(strip_tags($this->author_id));
-            $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+            $this->authorId = htmlspecialchars(strip_tags($this->authorId));
+            $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
 
             // Bind data
             $stmt->bindParam(':id', $this->id);
             $stmt->bindParam(':quote', $this->quote);
-            $stmt->bindParam(':author_id', $this->author_id);
-            $stmt->bindParam(':category_id', $this->category_id);
+            $stmt->bindParam(':authorId', $this->authorId);
+            $stmt->bindParam(':categoryId', $this->categoryId);
 
             // Execute query
             if($stmt->execute()) {

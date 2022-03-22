@@ -12,10 +12,10 @@
     $database = new Database();
     $db = $database->connect();
 
-    // Instantiate blog category object
+    // Instantiate category object
     $category = new Category($db);
 
-    // Get raw categoryed data
+    // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
     // Set ID to update
@@ -24,7 +24,7 @@
     // Delete category
     if($category->delete()) {
         echo json_encode(
-            array('message' => 'Category Deleted')
+            array('id' => $category->id)
         );
     } else {
         echo json_encode(

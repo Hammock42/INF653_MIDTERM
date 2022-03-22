@@ -37,11 +37,11 @@
         }
 
         // Turn to JSON & output
-        echo json_encode($category_arr);
+        print_r(json_encode($category_arr));
     } else {
         // No categorys
         echo json_encode(
-            array('message' => 'No Categorys Found')
+            array('message' => 'No Categories Found')
         );
     }
 ?>

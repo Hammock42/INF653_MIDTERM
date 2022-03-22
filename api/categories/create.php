@@ -23,11 +23,14 @@
     // Create post
     if($category->create()) {
         echo json_encode(
-            array('message' => 'Category Created')
+            array(
+                'id' => $db->lastInsertId(),
+                'category' => $category->category
+                )
         );
     } else {
         echo json_encode(
-            array('message' => 'Category Not Created')
+            array('message' => 'Missing Required Parameters')
         );
     }
 ?>
