@@ -26,7 +26,6 @@
     );
 
     // Make JSON
-    echo json_encode("id = " . $authors->id);
     if($authors->id !== null) {
         echo json_encode($author_arr);
     }
