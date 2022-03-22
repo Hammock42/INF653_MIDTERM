@@ -40,8 +40,7 @@
                 FROM
                     ' . $this->table . '
                 WHERE
-                    id = :id
-                LIMIT 0,1';
+                    id = :id';
 
             // Prepare Statement
             $stmt = $this->conn->prepare($query);
