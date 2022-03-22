@@ -17,15 +17,15 @@
     }
 
     else if (!empty($isAnCategoryId) && !empty($isAnAuthorId) && $method == 'GET') {
-        include('./quoteByCategoryIdAndAuthorId.php');
+        include('./read_by_author_and_category_id.php');
     }
 
     else if (!empty($isAnAuthorId) && $method == 'GET') {
-        include('./quoteByAuthorID.php');
+        include('./read_by_author_id.php');
     }
 
     else if (!empty($isAnCategoryId) && $method == 'GET') {
-        include('./quoteByCategoryId.php');
+        include('./read_by_category_id.php');
     }
 
     else if ($method == 'POST') {
@@ -43,6 +43,6 @@
     
 
 else if($method == 'GET') {
-    include('./quotes.php');
+    include('./read.php');
 } 
 ?>

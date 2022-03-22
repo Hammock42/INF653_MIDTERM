@@ -8,9 +8,7 @@
         public $id;
         public $quote;
         public $author;
-        public $authorId;
         public $category;
-        public $categoryId;
 
         // Constructor with DB
         public function __construct($db) {
@@ -65,7 +63,7 @@
             $stmt = $this->conn->prepare($query);
 
             // Bind ID
-            $stmt->bindParam(1, $this->id);
+            $stmt->bindParam(':id', $this->id);
 
             // Execute Query
             $stmt->execute();
@@ -77,6 +75,91 @@
             $this->quote = $row['quote'];
             $this->author = $row['author'];
             $this->category = $row['category'];
+        }
+
+        // Get Quote by author id
+        public function read_by_author_id() {
+            // Create Query
+            $query = 'SELECT
+                    q.id as id,
+                    q.quote as quote,
+                    a.author as author,
+                    c.category as category
+                FROM
+                    ' . $this->table . ' q
+                CROSS JOIN
+                    authors a ON a.id = q.authorId
+                CROSS JOIN
+                    categories c ON c.id = q.categoryId
+                WHERE
+                    q.authorId = :authorId';
+
+            // Prepare Statement
+            $stmt = $this->conn->prepare($query);
+
+            // Bind ID
+            $stmt->bindParam(':authorId', $this->authorId);
+
+            // Execute Query
+            $stmt->execute();
+            return $stmt;
+        }
+
+        // Get Quotes by category id
+        public function read_by_category_id() {
+            // Create Query
+            $query = 'SELECT
+                    q.id as id,
+                    q.quote as quote,
+                    a.author as author,
+                    c.category as category
+                FROM
+                    ' . $this->table . ' q
+                CROSS JOIN
+                    authors a ON a.id = q.authorId
+                CROSS JOIN
+                    categories c ON c.id = q.categoryId
+                WHERE
+                    q.categoryId = :categoryId';
+
+            // Prepare Statement
+            $stmt = $this->conn->prepare($query);
+
+            // Bind ID
+            $stmt->bindParam(':categoryId', $this->categoryId);
+
+            // Execute Query
+            $stmt->execute();
+            return $stmt;
+        }
+
+        // Get Quote by author and category id
+        public function read_by_author_and_category_id() {
+            // Create Query
+            $query = 'SELECT
+                    q.id as id,
+                    q.quote as quote,
+                    a.author as author,
+                    c.category as category
+                FROM
+                    ' . $this->table . ' q
+                CROSS JOIN
+                    authors a ON a.id = q.authorId
+                CROSS JOIN
+                    categories c ON c.id = q.categoryId
+                WHERE
+                    q.authorId = :authorId && q.categoryId = :categoryId';
+
+            // Prepare Statement
+            $stmt = $this->conn->prepare($query);
+
+            // Bind ID
+            $stmt->bindParam(':authorId', $this->authorId);
+            $stmt->bindParam(':categoryId', $this->categoryId);
+
+            // Execute Query
+            $stmt->execute();
+            return $stmt;
         }
 
         // Create Quote
@@ -96,6 +179,12 @@
             $this->quote = htmlspecialchars(strip_tags($this->quote));
             $this->authorId = htmlspecialchars(strip_tags($this->authorId));
             $this->categoryId = htmlspecialchars(strip_tags($this->categoryId));
+
+            // Bind params
+            $stmt->bindParam(':id', $this->id);
+            $stmt->bindParam(':quote', $this->quote);
+            $stmt->bindParam(':authorId', $this->authorId);
+            $stmt->bindParam(':categoryId', $this->categoryId);
 
             // Execute query
             if($stmt->execute()) {
@@ -165,7 +254,7 @@
             }
 
             // print error if something goes wrong
-            printf("Message: '%s'\n", $stmt->error);
+            printf("Error: '%s'\n", $stmt->error);
 
             return false;            
         }
