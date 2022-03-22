@@ -27,7 +27,7 @@
     
             $quote_item = array( 
                 'id' => $id,
-                'quote' => html_entity_decode($quote->quote),
+                'quote' => html_entity_decode($this->quote),
                 'author' => $author,
                 'category' => $category
             );
