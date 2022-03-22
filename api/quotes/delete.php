@@ -9,6 +9,7 @@
     include_once '../../models/Quote.php';
     include_once '../../models/Author.php';
     include_once '../../models/Category.php';
+    include_once '../../api/functions/isValid.php';
     
     // Instantiate DB & connect
     $database = new Database();
@@ -19,22 +20,22 @@
     
     // get raw data
     $data = json_decode(file_get_contents("php://input"));
-
-    // get ID
-    $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
     
     // delete quote
     $quote->delete();
     
     $quote->id = $data->id;
+
+    $quoteExists = isValid($id, $quote);
     
-    if($quote->id !== null) {
+    if(!$quoteExists) {
         echo json_encode(
-            array('id' =>  $quote->id));
-    } 
+            array('message' => 'No Quotes Found')
+        );
+    }
     else {
         echo json_encode(
-            array('message' => 'No Quotes Found') 
+            array('id' =>  $quote->id)
         );
     }
 ?>

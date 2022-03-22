@@ -7,6 +7,7 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Category.php';
+    include_once '../../api/functions/isValid.php';
 
     // Instantiate DB & connect
     $database = new Database();
@@ -22,6 +23,7 @@
     $category->id = $data->id;
 
     // Delete category
+    /*
     if($category->delete()) {
         echo json_encode(
             array('id' => $category->id)
@@ -29,6 +31,20 @@
     } else {
         echo json_encode(
             array('message' => 'Category Not Deleted')
+        );
+    }
+    */
+
+    $categoryExists = isValid($id, $category);
+    
+    if(!$categoryExists) {
+        echo json_encode(
+            array('message' => 'Category Not Deleted')
+        );
+    }
+    else {
+        echo json_encode(
+            array('id' =>  $category->id)
         );
     }
 ?>
