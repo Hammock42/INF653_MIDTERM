@@ -26,7 +26,7 @@
     );
 
     if($category->id !== null) {
-        echo (json_encode($category_arr));
+        echo json_encode($category_arr);
     }
     else {
         echo (json_encode(array('message' => 'CategoryId Not Found')));

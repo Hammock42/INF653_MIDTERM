@@ -29,7 +29,7 @@
     
     // convert to json
     if($quote->id !== null) {
-        print_r(json_encode($quote_arr));
+        echo json_encode($quote_arr);
     }
     else {
         echo json_encode(

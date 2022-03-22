@@ -21,20 +21,19 @@
     if($num > 0) {
         // quote array
         $quote_arr = array();
-        $quote_arr['data'] = array();
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
     
             $quote_item = array( 
                 'id' => $id,
-                // 'quote' => html_entity_decode($quote),
+                'quote' => html_entity_decode($quote->quote),
                 'author' => $author,
                 'category' => $category
             );
             
             // Push to "data"
-            array_push($quote_arr['data'], $quote_item);
+            array_push($quote_arr, $quote_item);
         
         }
 
