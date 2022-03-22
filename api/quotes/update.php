@@ -9,6 +9,7 @@
     include_once '../../models/Quote.php';
     include_once '../../models/Author.php';
     include_once '../../models/Category.php';
+    include_once '../../api/functions/missingParams.php';
     
     // Instantiate DB & connect
     $database = new Database();
@@ -25,20 +26,23 @@
     $quote->quote = $data->quote;
     $quote->authorId = $data->authorId;
     $quote->categoryId = $data->categoryId;
-    
-    // Update quote
-    if($quote->update()) {
+
+    if(missingParamsQuotes($quote->id, $quote->quote, $quote->authorId, $quote->categoryId)){
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+    }
+
+    // Update author
+    else {
+        $quote->update();
         echo json_encode(
             array(
                 'id' => $quote->id,
                 'quote' => $quote->quote,
                 'authorId' => $quote->authorId,
-                'categoryId' => $quote->categoryId    
+                'categoryId' => $quote->categoryId 
             )
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Quote Not Updated')
         );
     }
 ?>

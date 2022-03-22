@@ -7,6 +7,7 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Category.php';
+    include_once '../../api/functions/missingParams.php';
 
     // Instantiate DB & connect
     $database = new Database();
@@ -21,6 +22,23 @@
     // Set ID to update
     $category->id = $data->id;
     $category->category = $data->category;
+
+    if(missingParams($category->id, $category->category)){
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+    }
+
+    // Update author
+    else {
+        $category->update();
+        echo json_encode(
+            array(
+                'id' => $category->id,
+                'author' => $category->category
+            )
+        );
+    }
 
     // Update category
     if($category->update()) {
