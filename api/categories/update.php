@@ -22,20 +22,20 @@
     // Set ID to update
     $category->id = $data->id;
     $category->category = $data->category;
-    echo json_encode(array('id = ' . $category->id . ' category = '. $category->category));
+    
     if(missingParams($category->id, $category->category)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
     }
 
-    // Update author
+    // Update category
     else {
         $category->update();
         echo json_encode(
             array(
                 'id' => $category->id,
-                'author' => $category->category
+                'category' => $category->category
             )
         );
     }
