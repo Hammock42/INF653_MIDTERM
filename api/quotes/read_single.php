@@ -28,7 +28,6 @@
     );
     
     // convert to json
-    echo json_encode("quote id = " . $quotes->id);
     if($quotes->id !== null) {
         echo json_encode($quote_arr);
     }
