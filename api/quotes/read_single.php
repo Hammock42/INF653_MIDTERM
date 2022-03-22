@@ -28,7 +28,7 @@
     );
     
     // convert to json
-    if($quote->id !== null) {
+    if($quotes->id !== null) {
         echo json_encode($quote_arr);
     }
     else {
