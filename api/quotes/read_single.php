@@ -11,20 +11,20 @@
     $db = $database->connect();
     
     // Instantiate quote object    
-    $quote = new Quote($db);
+    $quotes = new Quote($db);
     
     // get ID
-    $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $quotes->id = isset($_GET['id']) ? $_GET['id'] : die();
     
     // get quote    
-    $quote->read_single();
+    $quotes->read_single();
     
     // Create array
     $quote_arr = array (
-        'id' => $quote->id,
-        'quote' => $quote->quote,
-        'author' => $quote->author,
-        'category' => $quote->category
+        'id' => $quotes->id,
+        'quote' => $quotes->quote,
+        'author' => $quotes->author,
+        'category' => $quotes->category
     );
     
     // convert to json

@@ -56,8 +56,7 @@
                 CROSS JOIN
                     categories c ON c.id = q.categoryId
                 WHERE
-                    q.id = ?
-                LIMIT 0,1';
+                    q.id = :id';
 
             // Prepare Statement
             $stmt = $this->conn->prepare($query);
