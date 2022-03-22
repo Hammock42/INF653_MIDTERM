@@ -26,6 +26,7 @@
     );
 
     // Make JSON
+    echo json_encode("testing before if statement");
     if($authors->id !== null) {
         echo json_encode($author_arr);
     }
