@@ -14,12 +14,12 @@
     $db = $database->connect();
 
     // Instantiate quote object
-    $quote = new Quote($db);
+    $quotes = new Quote($db);
 
-    $quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
+    $quotes->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
 
     // quote query
-    $result = $quote->read_by_category_id();
+    $result = $quotes->read_by_category_id();
     // Get row count
     $num = $result->rowCount();
 
@@ -32,7 +32,7 @@
             extract($row);
 
             $quote_item = array( 
-                'quote' => html_entity_decode($quote->quote),
+                'quote' => html_entity_decode($quote),
                 'category' => $category,
                 'id' => $id,
                 'author' => $author

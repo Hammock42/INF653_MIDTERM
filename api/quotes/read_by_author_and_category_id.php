@@ -15,13 +15,13 @@
     $db = $database->connect();
 
     // Instantiate quote object
-    $quote = new Quote($db);
+    $quotes = new Quote($db);
 
-    $quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
-    $quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die();
+    $quotes->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
+    $quotes->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die();
     
     // quote query
-    $result = $quote->read_by_author_and_category_id();
+    $result = $quotes->read_by_author_and_category_id();
     // get row count
     $num = $result->rowCount();
 
@@ -35,7 +35,7 @@
 
             $quote_item = array( 
                 'id' => $id,
-                'quote' => html_entity_decode($quote->quote),
+                'quote' => html_entity_decode($quote),
                 'author' => $author,
                 'category' => $category   
             );
