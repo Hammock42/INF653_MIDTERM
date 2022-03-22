@@ -21,11 +21,11 @@
     $authors->author = $data->author;
 
     // Create post
-    if($author->create()) {
+    if($authors->create()) {
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),
-                'author' => $author->author)
+                'author' => $authors->author)
         );
     } else {
         echo json_encode(
