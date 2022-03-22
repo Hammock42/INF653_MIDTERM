@@ -33,6 +33,18 @@
         );
     }
 
+    else if (!isValid($quote->authorId, $author)) {
+        echo json_encode(
+            array('message' => 'authorId Not Found')
+        );
+    }
+
+    else if (!isValid($quote->categoryId, $category)) {
+        echo json_encode(
+            array('message' => 'categoryId Not Found')
+        );
+    }
+
     // Update author
     else {
         $quote->update();
