@@ -72,6 +72,9 @@
             // Clean Data
             $this->category = htmlspecialchars(strip_tags($this->category));
 
+            // Bind data
+            $stmt->bindParam(':category', $this->category);
+            
             // Execute query
             if($stmt->execute()) {
                 return true;
