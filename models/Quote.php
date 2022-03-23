@@ -66,6 +66,9 @@
 
             // Execute Query
             $stmt->execute();
+            if($stmt->rowCount() == 0){
+                return false;
+            }
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -74,6 +77,8 @@
             $this->quote = $row['quote'];
             $this->author = $row['author'];
             $this->category = $row['category'];
+
+            return true;
 
         }
 
