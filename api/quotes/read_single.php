@@ -30,10 +30,12 @@
     // convert to json
     if($quotes->id !== null) {
         echo json_encode($quote_arr);
+        return true;
     }
     else {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
+        return false;
     }
 ?>
