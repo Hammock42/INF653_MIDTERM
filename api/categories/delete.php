@@ -36,7 +36,7 @@
     */
 
     $categoryExists = isValid($id, $category);
-    
+    echo $categoryExists;
     if(!$categoryExists) {
         echo json_encode(
             array('message' => 'Category Not Deleted')
