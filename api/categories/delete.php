@@ -23,7 +23,6 @@
     $category->id = $data->id;
 
     // Delete category
-    /*
     if($category->delete()) {
         echo json_encode(
             array('id' => $category->id)
@@ -33,18 +32,5 @@
             array('message' => 'Category Not Deleted')
         );
     }
-    */
-
-    $categoryExists = (isValid($id, $category) !== null);
-    echo json_encode(array($categoryExists));
-    if(!$categoryExists) {
-        echo json_encode(
-            array('message' => 'Category Does Not Exist')
-        );
-    }
-    else {
-        echo json_encode(
-            array('id' =>  $category->id)
-        );
-    }
+    
 ?>
