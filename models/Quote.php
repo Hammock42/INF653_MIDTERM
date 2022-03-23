@@ -164,11 +164,11 @@
         // Create Quote
         public function create() {
             // Create query
-            $query = 'INSERT INTO ' . $this->table . '
-                SET
+            $query = 'INSERT INTO ' . $this->table . '(quote, authorId, categoryId)
+                VALUES (
                     qoute = :quote,
                     authorId = :authorId,
-                    categoryId = :categoryId';
+                    categoryId = :categoryId)';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
