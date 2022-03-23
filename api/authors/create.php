@@ -20,7 +20,7 @@
 
     $authors->author = $data->author;
 
-    if(missingParams($authors->author, $authors)){
+    if(missingParam($authors->author)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );

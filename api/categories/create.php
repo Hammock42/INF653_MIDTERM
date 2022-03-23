@@ -20,7 +20,7 @@
 
     $categorys->category = $data->category;
 
-    if(missingParams($categorys->category, $categorys)){
+    if(missingParam($categorys->category)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );

@@ -11,8 +11,22 @@
         return false;
     }
 
+    function missingParamsQuoteCreate($quote, $author, $category) {
+        if($quote === null || $author === null || $category === null){
+            return true;
+        }
+        return false;
+    }
+
     function missingParams($id, $model) {
         if($id === null || $model === null){
+            return true;
+        }
+        return false;
+    }
+
+    function missingParam($name) {
+        if($name === null){
             return true;
         }
         return false;
