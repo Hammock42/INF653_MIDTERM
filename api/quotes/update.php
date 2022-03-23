@@ -10,6 +10,7 @@
     include_once '../../models/Author.php';
     include_once '../../models/Category.php';
     include_once '../../api/functions/missingParams.php';
+    include_once '../../api/functions/isValid.php';
     
     // Instantiate DB & connect
     $database = new Database();
