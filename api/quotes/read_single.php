@@ -32,10 +32,8 @@
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
-        return false;
     }
     else {
         echo json_encode($quote_arr);
-        return true;
     }
 ?>
