@@ -32,7 +32,7 @@
     $authorExists = isValid($quotes->authorId, $author);
     $categoryExists = isValid($quotes->categoryId, $category);
 
-    if(missingParamsQuoteCreate($data->quote, $data->authorId, $data->categoryId)){
+    if(missingParamsQuoteCreate($quotes->quote, $quotes->authorId, $quotes->categoryId)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
