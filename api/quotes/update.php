@@ -36,19 +36,19 @@
         );
     }
 
-    $quoteExists = isValid($data->id, $quotes);
+    $quoteExists = isValid($quotes->id, $quotes);
     if(!$quoteExists) {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
     }
-    $authorExists = isValid($data->authorId, $author);
+    $authorExists = isValid($quotes->authorId, $author);
     if(!$authorExists) {
         echo json_encode(
             array('message' => 'authorId Not Found')
         );
     }
-    $categoryExists = isValid($data->categoryId, $category);
+    $categoryExists = isValid($quotes->categoryId, $category);
     if(!$categoryExists) {
         echo json_encode(
             array('message' => 'categoryId Not Found')
