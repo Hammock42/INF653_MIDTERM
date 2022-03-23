@@ -26,7 +26,7 @@
     
     $quote->id = $data->id;
 
-    $quoteExists = isValid($id, $quote);
+    $quoteExists = isValid($quote->id, $quote->quote);
     echo json_encode(array($quoteExists));
     if(!$quoteExists) {
         echo json_encode(
