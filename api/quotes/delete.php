@@ -21,10 +21,8 @@
     // get raw data
     $data = json_decode(file_get_contents("php://input"));
     
-    echo json_encode(
-        array(isValid($quote->id, $quote))
-    );
-    if(!isValid($quote->id, $quote)) {
+    $quoteExists = isValid($quote->id, $quote);
+    if(!$quoteExists) {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
