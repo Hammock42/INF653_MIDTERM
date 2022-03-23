@@ -16,6 +16,20 @@
     // Get ID
     $authors->id = isset($_GET['id']) ? $_GET['id'] : die();
 
+    if($authors->read_single()){
+        $author_arr = array (
+          'id' => $authors->id,
+          'author' => $authors->author
+        );
+      
+        echo json_encode($author_arr);
+      } else {
+      
+        echo json_encode(
+           array('message' => 'No Quotes Found')
+        );
+      }
+    /*
     // Get author
     $authors->read_single();
 
@@ -34,4 +48,5 @@
             array('message' => 'authorId Not Found')
         );
     }
+    */
 ?>
