@@ -35,6 +35,7 @@
     }
     // Create category
     else{
+        /*
         $authorExists = isValid($quotes->authorId, $author);
         $categoryExists = isValid($quotes->categoryId, $category);
         if(!$authorExists) {
@@ -47,7 +48,7 @@
                 array('message' => 'categoryId Not Found')
             );
         }
-        else {
+        */
             $quotes->create();
             echo json_encode(
                 array(
@@ -57,6 +58,6 @@
                     'categoryId' => $quotes->categoryId
                     )
             );
-        }
+        
     }
 ?>
