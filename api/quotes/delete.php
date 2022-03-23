@@ -26,16 +26,14 @@
     
     $quote->id = $data->id;
 
-    $quoteExists = isValid($quote->id, $quote);
-    echo json_encode(array($quoteExists));
-    if(!$quoteExists) {
+     // Delete quote
+     if($quote->delete()) {
+        echo json_encode(
+            array('id' => $quote->id)
+        );
+    } else {
         echo json_encode(
             array('message' => 'No Quotes Found')
-        );
-    }
-    else {
-        echo json_encode(
-            array('id' =>  $quote->id)
         );
     }
 ?>
