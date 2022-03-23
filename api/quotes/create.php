@@ -21,7 +21,6 @@
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
-    $quotes->id = $data->id;
     $quotes->quote = $data->quote;
     $quotes->authorId = $data->authorId;
     $quotes->categoryId = $data->categoryId;
