@@ -29,13 +29,7 @@
     
     // Create author
     else{
-        echo json_encode(
-            array("Checking if this prints")
-        );
         $authors->create();
-        echo json_encode(
-            array("Checking if this prints also")
-        );
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),

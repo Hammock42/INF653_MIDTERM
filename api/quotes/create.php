@@ -32,9 +32,6 @@
     }
     // Create category
     else{
-        echo json_encode(
-            array("Checking if this prints")
-        );
         $quotes->create();
         echo json_encode(
             array("Checking if this prints also")

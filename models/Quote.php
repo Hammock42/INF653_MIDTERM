@@ -165,10 +165,7 @@
         public function create() {
             // Create query
             $query = 'INSERT INTO ' . $this->table . '(quote, authorId, categoryId)
-                VALUES (
-                    qoute = :quote,
-                    authorId = :authorId,
-                    categoryId = :categoryId)';
+                VALUES (:quote, :authorId, :categoryId)';
 
             // Prepare statement
             $stmt = $this->conn->prepare($query);
