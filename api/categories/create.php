@@ -13,19 +13,19 @@
     $db = $database->connect();
 
     // Instantiate category object
-    $category = new Category($db);
+    $categorys = new Category($db);
 
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
 
-    $category->category = $data->category;
+    $categorys->category = $data->category;
 
     // Create post
-    if($category->create()) {
+    if($categorys->create()) {
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),
-                'category' => $category->category
+                'category' => $categorys->category
                 )
         );
     } else {
