@@ -31,9 +31,9 @@
             array('message' => 'Missing Required Parameters')
         );
     }
-    /*
+    
     // Create category
-    $quoteExists = isValid($data->id, $quote);
+    $quoteExists = isValid($data->id, $quotes);
     if(!$quoteExists) {
         echo json_encode(
             array('message' => 'No Quotes Found')
@@ -50,7 +50,7 @@
         echo json_encode(
             array('message' => 'categoryId Not Found')
         );
-    }*/
+    }
     else{
         $quotes->create();
         echo json_encode(
