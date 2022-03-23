@@ -49,14 +49,20 @@
             // Bind ID
             $stmt->bindParam(1, $this->id);
 
-            // Execute Query
-            $stmt->execute();
+            // Execute query
+            if($stmt->execute()) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                // Set Properties
+                $this->id = $row['id'];
+                $this->category = $row['category'];
+                return true;
+            }
 
-            // Set Properties
-            $this->id = $row['id'];
-            $this->category = $row['category'];
+            // Print error if something went wrong
+            printf("Message: '%s'\n", $stmt->error);
+
+            return false;
         }
 
         // Create Category
