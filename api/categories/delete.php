@@ -35,11 +35,11 @@
     }
     */
 
-    $categoryExists = isValid($id, $category);
+    $categoryExists = (isValid($id, $category) !== null);
     echo json_encode(array($categoryExists));
     if(!$categoryExists) {
         echo json_encode(
-            array('message' => 'Category Not Deleted')
+            array('message' => 'Category Does Not Exist')
         );
     }
     else {
