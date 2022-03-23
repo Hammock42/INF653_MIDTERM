@@ -28,7 +28,6 @@
     $quotes->authorId = $data->authorId;
     $quotes->categoryId = $data->categoryId;
 
-    $quoteExists = isValid($quotes->id, $quotes);
     $authorExists = isValid($quotes->authorId, $author);
     $categoryExists = isValid($quotes->categoryId, $category);
 
@@ -39,11 +38,6 @@
     }
     
     // Create category
-    else if(!$quoteExists) {
-        echo json_encode(
-            array('message' => 'No Quotes Found')
-        );
-    }
     else if(!$authorExists) {
         echo json_encode(
             array('message' => 'authorId Not Found')
