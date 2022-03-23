@@ -34,13 +34,13 @@
     
     // Create category
     else{
-        $quote->create();
+        $quotes->create();
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),
-                'quote' => $quote->quote,
-                'authorId' => $quote->authorId,
-                'categoryId' => $quote->categoryId
+                'quote' => $quotes->quote,
+                'authorId' => $quotes->authorId,
+                'categoryId' => $quotes->categoryId
                 )
         );
     }
