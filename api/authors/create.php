@@ -7,6 +7,7 @@
 
     include_once '../../config/Database.php';
     include_once '../../models/Author.php';
+    include_once '../../api/functions/missingParams.php';
 
     // Instantiate DB & connect
     $database = new Database();
