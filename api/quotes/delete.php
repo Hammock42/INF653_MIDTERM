@@ -27,7 +27,7 @@
     $quote->id = $data->id;
 
     $quoteExists = isValid($id, $quote);
-    
+    echo json_encode(array($quoteExists));
     if(!$quoteExists) {
         echo json_encode(
             array('message' => 'No Quotes Found')
