@@ -68,17 +68,12 @@
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $num = $row->rowCount();
 
             // Set Properties
             $this->id = $row['id'];
             $this->quote = $row['quote'];
             $this->author = $row['author'];
             $this->category = $row['category'];
-            if($num>0){
-                return true;
-            }
-            return false;
 
         }
 
