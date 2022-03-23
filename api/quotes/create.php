@@ -34,30 +34,33 @@
         );
     }
     // Create category
+    $quoteExists = isValid($data->id, $quote);
+    if(!$quoteExists) {
+        echo json_encode(
+            array('message' => 'No Quotes Found')
+        );
+    }
+    $authorExists = isValid($data->authorId, $author);
+    if(!$authorExists) {
+        echo json_encode(
+            array('message' => 'authorId Not Found')
+        );
+    }
+    $categoryExists = isValid($data->categoryId, $category);
+    if(!$categoryExists) {
+        echo json_encode(
+            array('message' => 'categoryId Not Found')
+        );
+    }
     else{
-        $authorExists = isValid($data->authorId, $author);
-        $categoryExists = isValid($data->categoryId, $category);
-        if(!$authorExists) {
-            echo json_encode(
-                array('message' => 'authorId Not Found')
-            );
-        }
-        else if(!$categoryExists) {
-            echo json_encode(
-                array('message' => 'categoryId Not Found')
-            );
-        }
-        else{
-            $quotes->create();
-            echo json_encode(
-                array(
-                    'id' => $db->lastInsertId(),
-                    'quote' => $quotes->quote,
-                    'authorId' => $quotes->authorId,
-                    'categoryId' => $quotes->categoryId
-                    )
-            );
-        }
-        
+        $quotes->create();
+        echo json_encode(
+            array(
+                'id' => $db->lastInsertId(),
+                'quote' => $quotes->quote,
+                'authorId' => $quotes->authorId,
+                'categoryId' => $quotes->categoryId
+            )
+        );    
     }
 ?>
