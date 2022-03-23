@@ -20,17 +20,20 @@
 
     $categorys->category = $data->category;
 
-    // Create post
-    if($categorys->create()) {
+    if(missingParams($categorys->category, $categorys)){
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+    }
+    
+    // Create category
+    else{
+        $categorys->create();
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),
                 'category' => $categorys->category
                 )
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Missing Required Parameters')
         );
     }
 ?>

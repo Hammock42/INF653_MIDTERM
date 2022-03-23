@@ -20,16 +20,20 @@
 
     $authors->author = $data->author;
 
-    // Create post
-    if($authors->create()) {
+    if(missingParams($authors->author, $authors)){
+        echo json_encode(
+            array('message' => 'Missing Required Parameters')
+        );
+    }
+    
+    // Create author
+    else{
+        $authors->create();
         echo json_encode(
             array(
                 'id' => $db->lastInsertId(),
-                'author' => $authors->author)
-        );
-    } else {
-        echo json_encode(
-            array('message' => 'Author Not Created')
+                'category' => $authors->author
+                )
         );
     }
 ?>
