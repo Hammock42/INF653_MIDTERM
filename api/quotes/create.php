@@ -26,7 +26,7 @@
     $quotes->authorId = $data->authorId;
     $quotes->categoryId = $data->categoryId;
 
-    if(missingParamsQuoteCreate($quotes->quote, $quotes->authorId, $quotes->categoryId)){
+    if(missingParamsQuoteCreate($data->quote, $data->authorId, $data->categoryId)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
