@@ -28,12 +28,12 @@
     );
     
     // convert to json
-    if($quotes->row->rowCount() == 0) {
+    if($quotes->id !== null) {
+        echo json_encode($quote_arr);
+    }
+    else {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
-    }
-    else {
-        echo json_encode($quote_arr);
     }
 ?>
