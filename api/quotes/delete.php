@@ -21,17 +21,14 @@
     // get raw data
     $data = json_decode(file_get_contents("php://input"));
     
-    // delete quote
-    $quote->delete();
-    
-    $quote->id = $data->id;
-
-     // Delete quote
-     if($quote->delete()) {
+    if(isValid($quote->id, $quote)) {
+        $quote->delete();
+        $quote->id = $data->id;
         echo json_encode(
             array('id' => $quote->id)
         );
-    } else {
+    }
+    else {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
