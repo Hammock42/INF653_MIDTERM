@@ -28,6 +28,10 @@
     $quotes->authorId = $data->authorId;
     $quotes->categoryId = $data->categoryId;
 
+    $quoteExists = isValid($quotes->id, $quotes);
+    $authorExists = isValid($quotes->authorId, $author);
+    $categoryExists = isValid($quotes->categoryId, $category);
+
     if(missingParamsQuoteCreate($data->quote, $data->authorId, $data->categoryId)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
@@ -35,20 +39,17 @@
     }
     
     // Create category
-    $quoteExists = isValid($quotes->id, $quotes);
-    if(!$quoteExists) {
+    else if(!$quoteExists) {
         echo json_encode(
             array('message' => 'No Quotes Found')
         );
     }
-    $authorExists = isValid($quotes->authorId, $author);
-    if(!$authorExists) {
+    else if(!$authorExists) {
         echo json_encode(
             array('message' => 'authorId Not Found')
         );
     }
-    $categoryExists = isValid($quotes->categoryId, $category);
-    if(!$categoryExists) {
+    else if(!$categoryExists) {
         echo json_encode(
             array('message' => 'categoryId Not Found')
         );
