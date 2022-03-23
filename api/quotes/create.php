@@ -10,6 +10,7 @@
     include_once '../../models/Author.php';
     include_once '../../models/Category.php';
     include_once '../../api/functions/missingParams.php';
+    include_once '../../api/functions/isValid.php';
 
     // Instantiate DB & connect
     $database = new Database();
@@ -17,6 +18,8 @@
 
     // Instantiate quote object
     $quotes = new Quote($db);
+    $author = new Author($db);
+    $category = new Category($DB);
 
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
@@ -32,14 +35,26 @@
     }
     // Create category
     else{
-        $quotes->create();
-        echo json_encode(
-            array(
-                'id' => $db->lastInsertId(),
-                'quote' => $quotes->quote,
-                'authorId' => $quotes->authorId,
-                'categoryId' => $quotes->categoryId
-                )
-        );
+        if(!isValid($quotes->authorId, $author)) {
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+        }
+        else if(!isValid($quotes->categoryId, $category)) {
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+        }
+        else {
+            $quotes->create();
+            echo json_encode(
+                array(
+                    'id' => $db->lastInsertId(),
+                    'quote' => $quotes->quote,
+                    'authorId' => $quotes->authorId,
+                    'categoryId' => $quotes->categoryId
+                    )
+            );
+        }
     }
 ?>
