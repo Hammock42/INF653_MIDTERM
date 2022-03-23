@@ -16,46 +16,32 @@
     $db = $database->connect();
     
     // Instantiate quote object
-    $quote = new Quote($db);
-    $author = new Author($db);
-    $category = new Category($db);
+    $quotes = new Quote($db);
     
     // get raw data
     $data = json_decode(file_get_contents("php://input"));
     
     // Set ID to update
-    $quote->id = $data->id;
-    $quote->quote = $data->quote;
-    $quote->authorId = $data->authorId;
-    $quote->categoryId = $data->categoryId;
+    $quotes->id = $data->id;
+    $quotes->quote = $data->quote;
+    $quotes->authorId = $data->authorId;
+    $quotes->categoryId = $data->categoryId;
 
-    if(missingParamsQuotes($quote->id, $quote->quote, $quote->authorId, $quote->categoryId)){
+    if(missingParamsQuotes($quotes->id, $quotes->quote, $quotes->authorId, $quotes->categoryId)){
         echo json_encode(
             array('message' => 'Missing Required Parameters')
         );
     }
 
-    else if (!isValid($quote->authorId, $author)) {
-        echo json_encode(
-            array('message' => 'authorId Not Found')
-        );
-    }
-
-    else if (!isValid($quote->categoryId, $category)) {
-        echo json_encode(
-            array('message' => 'categoryId Not Found')
-        );
-    }
-
-    // Update author
+    // Update quote
     else {
-        $quote->update();
+        $quotes->update();
         echo json_encode(
             array(
-                'id' => $quote->id,
-                'quote' => $quote->quote,
-                'authorId' => $quote->authorId,
-                'categoryId' => $quote->categoryId 
+                'id' => $quotes->id,
+                'quote' => $quotes->quote,
+                'authorId' => $quotes->authorId,
+                'categoryId' => $quotes->categoryId 
             )
         );
     }
