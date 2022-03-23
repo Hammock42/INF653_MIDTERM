@@ -74,6 +74,10 @@
             $this->quote = $row['quote'];
             $this->author = $row['author'];
             $this->category = $row['category'];
+
+            if($row->rowCount() > 0){
+                return true;
+            }
         }
 
         // Get Quote by author id
