@@ -50,12 +50,17 @@
 
             // Execute Query
             $stmt->execute();
+            if($stmt->rowCount() == 0){
+                return false;
+            }
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Set Properties
             $this->id = $row['id'];
             $this->author = $row['author'];
+
+            return true;
         }
 
         // Create Author

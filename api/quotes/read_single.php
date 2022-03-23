@@ -16,6 +16,22 @@
     // get ID
     $quotes->id = isset($_GET['id']) ? $_GET['id'] : die();
     
+    if($quotes->read_single()){
+        $quote_arr = array (
+          'id' => $quotes->id,
+          'quote' => $quotes->quote,
+          'author' => $quotes->author,
+          'category' => $quotes->category
+        );
+      
+        echo json_encode($quote_arr);
+      } else {
+      
+        echo json_encode(
+           array('message' => 'No Quotes Found')
+        );
+      }
+    /*
     // get quote    
     $quotes->read_single();
     
@@ -28,7 +44,7 @@
     );
     
     // convert to json
-    if($quotes->id !== null) {
+    if($quotes->read_single()) {
         echo json_encode($quote_arr);
     }
     else {
@@ -36,4 +52,5 @@
             array('message' => 'No Quotes Found')
         );
     }
+    */
 ?>
