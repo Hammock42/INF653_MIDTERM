@@ -7,6 +7,6 @@
     function isValid($id, $model) {
         $model->id = $id;
         $result = $model->read_single();
-        return ($result->rowCount()>0);
+        return $result;
     }
 ?>
