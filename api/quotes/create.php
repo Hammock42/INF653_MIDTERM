@@ -18,6 +18,8 @@
 
     // Instantiate quote object
     $quotes = new Quote($db);
+    $author = new Author($db);
+    $category = new Category($db);
 
     // Get raw data
     $data = json_decode(file_get_contents("php://input"));
